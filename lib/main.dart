@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:baca_buku_flutter/page/home_page.dart';
-import 'package:baca_buku_flutter/page/item_page.dart';
+
+import 'bottom/bottom_navi.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(
-      primarySwatch: Colors.purple,
-    ),
-    initialRoute: '/',
-    routes: {
-      '/': (context) => HomePage(),
-      '/item': (context) => const ItemPage(),
-    },
-  ));
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Baca Buku',
+      theme: ThemeData(
+        primaryColor: Colors.purple,
+      ),
+      home: const BottomNavi(),
+    );
+  }
 }
