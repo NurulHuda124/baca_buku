@@ -1,3 +1,4 @@
+// register
 // ignore_for_file: deprecated_member_use
 
 import 'package:baca_buku_flutter/bottom/bottom_navi.dart';

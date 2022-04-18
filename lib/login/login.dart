@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use
+// login
 
 import 'package:baca_buku_flutter/bottom/bottom_navi.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class _LoginState extends State<Login> {
             TextFormField(
               keyboardType: TextInputType.emailAddress,
               autofocus: false,
-              decoration: InputDecoration( 
+              decoration: InputDecoration(
                 hintText: 'Email',
                 contentPadding:
                     const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
