@@ -1,8 +1,7 @@
+import 'package:baca_buku_flutter/pages/dua.dart';
 import 'package:baca_buku_flutter/pages/satu.dart';
 import 'package:baca_buku_flutter/pages/tiga.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/dua.dart';
 
 class One extends StatelessWidget {
   const One({Key? key}) : super(key: key);
@@ -10,11 +9,6 @@ class One extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title:
-      //       const Text('Perpustakaan', style: TextStyle(color: Colors.white)),
-      //   backgroundColor: Colors.purple,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

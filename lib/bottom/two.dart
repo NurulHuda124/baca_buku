@@ -10,16 +10,24 @@ class Two extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: const BorderSide(),
+            ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+              children: [
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: 'Cari Judul Buku...',
+                    contentPadding:
+                        const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32.0)),
+                  ),
                 ),
-                labelText: 'Cari Judul Buku...',
-              ),
+              ],
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 10),

@@ -1,3 +1,6 @@
+import 'package:baca_buku_flutter/pages/dua.dart';
+import 'package:baca_buku_flutter/pages/satu.dart';
+import 'package:baca_buku_flutter/pages/tiga.dart';
 import 'package:flutter/material.dart';
 
 class Bookmark extends StatelessWidget {
@@ -21,24 +24,48 @@ class Bookmark extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Image(
-                  image: NetworkImage('assets/images/Teluk_Alaska.jpg'),
-                  width: 150,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Satu();
+                    }));
+                  },
+                  child: const Image(
+                    image: NetworkImage('assets/images/Teluk_Alaska.jpg'),
+                    width: 150,
+                  ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(right: 15),
                 ),
-                Image(
-                  image: NetworkImage('assets/images/antares2.jfif'),
-                  width: 140,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Dua();
+                    }));
+                  },
+                  child: const Image(
+                    image: NetworkImage('assets/images/antares2.jfif'),
+                    width: 140,
+                  ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 15),
                 ),
-                Image(
-                  image: NetworkImage('assets/images/abighea.jfif'),
-                  width: 145,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Tiga();
+                    }));
+                  },
+                  child: const Image(
+                    image: NetworkImage('assets/images/abighea.jfif'),
+                    width: 145,
+                  ),
                 ),
               ],
             ),

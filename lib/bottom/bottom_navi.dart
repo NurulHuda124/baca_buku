@@ -1,3 +1,4 @@
+import 'package:baca_buku_flutter/bottom/akun.dart';
 import 'package:flutter/material.dart';
 import 'package:baca_buku_flutter/bottom/one.dart';
 import 'package:baca_buku_flutter/bottom/two.dart';
@@ -16,6 +17,7 @@ class _BottomNaviState extends State<BottomNavi> {
     const One(),
     const Two(),
     const Three(),
+    const Akun(),
   ];
 
   void ontap(int index) {
@@ -51,6 +53,13 @@ class _BottomNaviState extends State<BottomNavi> {
             label: 'Tulis',
             activeIcon: Icon(
               Icons.create,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Profil',
+            activeIcon: Icon(
+              Icons.person,
             ),
           ),
         ],
