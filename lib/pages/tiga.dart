@@ -27,6 +27,10 @@ class Tiga extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(bottom: 20),
             ),
+            const Text('Ditulis oleh : Reinda(Boo)'),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 30),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
