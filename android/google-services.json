@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "72936140403",
+    "project_id": "bacabuku-4c240",
+    "storage_bucket": "bacabuku-4c240.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72936140403:android:505bc7b69446304c404406",
+        "android_client_info": {
+          "package_name": "com.example.baca_buku_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72936140403-5gludicbs2r1r1p6ad0rn8tnlknlj63r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfuYFNkfpSsziar6rj2qmKYkWFpIvw5GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72936140403-5gludicbs2r1r1p6ad0rn8tnlknlj63r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
