@@ -39,5 +39,29 @@ Link : https://www.figma.com/file/AAL42KbD9YQ8oXM2wYKgMA/Untitled?node-id=0%3A1
 <span><img src="assets/pages/11.jpeg" width= "200"></span>
 
 
-### HASIL
+## OUTPUT APLIKASI
+### Halaman login
 <span><img src="assets/SS/1.jpeg" width= "200"></span>
+<span><img src="assets/SS/2.jpeg" width= "200"></span>
+
+### Halaman register
+<span><img src="assets/SS/3.jpeg" width= "200"></span>
+
+### Halaman Home
+<span><img src="assets/SS/4.jpeg" width= "200"></span>
+
+### Halaman Tambah Buku
+<span><img src="assets/SS/9.jpeg" width= "200"></span>
+<span><img src="assets/SS/10.jpeg" width= "200"></span>
+
+### Halaman Detail Buku
+<span><img src="assets/SS/5.jpeg" width= "200"></span>
+
+### Halaman Komentar
+<span><img src="assets/SS/6.jpeg" width= "200"></span>
+
+### Halaman Tambah Komentar
+<span><img src="assets/SS/7.jpeg" width= "200"></span>
+
+### Halaman Profil
+<span><img src="assets/SS/8.jpeg" width= "200"></span>
