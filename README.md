@@ -37,3 +37,7 @@ Link : https://www.figma.com/file/AAL42KbD9YQ8oXM2wYKgMA/Untitled?node-id=0%3A1
 <span><img src="assets/pages/10.jpeg" width= "200"></span>
 ### Halaman tulisanku (Putri Novika)
 <span><img src="assets/pages/11.jpeg" width= "200"></span>
+
+
+### HASIL
+<span><img src="assets/SS/1.jpeg" width= "200"></span>
