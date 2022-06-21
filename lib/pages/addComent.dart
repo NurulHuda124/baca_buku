@@ -86,7 +86,7 @@ class _addComentState extends State<addComent> {
               height: 5,
             ),
             const Text(
-              'Silahkan isi komentarmu di sini!',
+              'Silahkan Masukkan Komentar Anda Disini!',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 17,
@@ -109,7 +109,7 @@ class _addComentState extends State<addComent> {
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Komentar harus diisi!';
+                  return 'Komentar Harus Diisi!';
                 }
                 return null;
               },
