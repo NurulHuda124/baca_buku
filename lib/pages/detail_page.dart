@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, unnecessary_const
 
 import 'package:baca_buku_flutter/pages/comments.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,43 +18,6 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   FirebaseFirestore firebase = FirebaseFirestore.instance;
-  CollectionReference? books;
-
-  var gambar, judul, penulis, jenis, sinopsis, halaman;
-  void getData() async {
-    //get users collection from firebase
-    //collection is table in mysql
-    books = firebase.collection('books');
-
-    //if have id
-    // ignore: unnecessary_null_comparison
-    if (widget.id != null) {
-      //get users data based on id document
-      var data = await books!.doc(widget.id).get();
-
-      //we get data.data()
-      //so that it can be accessed, we make as a map
-      var item = data.data() as Map<String, dynamic>;
-
-      //set state to fill data controller from data firebase
-      setState(() {
-        gambar = item['gambar'];
-        judul = item['judul'];
-        penulis = item['penulis'];
-        jenis = item['jenis'];
-        sinopsis = item['sinopsis'];
-        halaman = item['halaman'];
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    // ignore: todo
-    // TODO: implement initState
-    getData();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,154 +43,256 @@ class _DetailPageState extends State<DetailPage> {
         //   )
         // ],
       ),
-      body: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      Material(
-                        elevation: 15.0,
-                        shadowColor: Colors.blue.shade900,
-                        child: Image.network(
-                          '$gambar',
-                          width: 120,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  flex: 3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        '$judul',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '$jenis',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 5),
-                          ),
-                          const Text('|'),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 5),
-                          ),
-                          Text(
-                            '$penulis',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '$halaman halaman',
-                            style: const TextStyle(
-                              color: Colors.black54,
-                              fontSize: 15,
-                            ),
-                          ),
-                          // const Text(
-                          //   ' halaman',
-                          //   style: TextStyle(
-                          //     color: Colors.black54,
-                          //     fontSize: 15,
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Material(
-                            borderRadius: BorderRadius.circular(50.0),
-                            color: Colors.deepPurple,
-                            shadowColor: Colors.black,
-                            elevation: 5.0,
-                            child: MaterialButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Comments(
-                                              email: widget.email,
-                                              id: widget.id)));
-                                },
-                                minWidth: 140,
-                                child: const Text(
-                                  'Lihat Komentar',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
+      body: StreamBuilder<QuerySnapshot>(
+        //data to be retrieved in the future
+        stream: FirebaseFirestore.instance
+            .collection('books')
+            .where('judul', isEqualTo: widget.judul)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          //show if there is data
+          if (snapshot.hasData) {
+            // ignore: prefer_is_empty
+            return snapshot.data!.docs.length != 0
+                ? ListView.builder(
+                    // displayed as much as the variable data alldata
+                    itemCount: snapshot.data!.docs.length,
+
+                    //make custom item with list tile.
+                    itemBuilder: (context, index) {
+                      return Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  flex: 2,
+                                  child: Column(
+                                    children: [
+                                      Material(
+                                        elevation: 15.0,
+                                        shadowColor: Colors.blue.shade900,
+                                        child: Image.network(
+                                          snapshot.data!.docs[index]['gambar'],
+                                          width: 120,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                )),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // ignore: sized_box_for_whitespace, avoid_unnecessary_containers
-                  Container(
-                    child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          '$sinopsis',
-                          style: const TextStyle(fontSize: 13, height: 1.5),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+                                ),
+                                Flexible(
+                                  flex: 3,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        snapshot.data!.docs[index]['judul'],
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]['jenis'],
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 17,
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(right: 5),
+                                          ),
+                                          const Text('|'),
+                                          const Padding(
+                                            padding: EdgeInsets.only(right: 5),
+                                          ),
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                                ['penulis'],
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 17,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                                ['halaman'],
+                                            style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          const Text(
+                                            ' halaman',
+                                            style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Diunggah : ',
+                                            style: TextStyle(
+                                                color: Colors.black54,
+                                                fontSize: 10,
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                          Text(
+                                            snapshot.data!.docs[index]['email'],
+                                            style: const TextStyle(
+                                                color: Colors.black54,
+                                                fontSize: 10,
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Material(
+                                            borderRadius:
+                                                BorderRadius.circular(50.0),
+                                            color: Colors.deepPurple,
+                                            shadowColor: Colors.black,
+                                            elevation: 5.0,
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Comments(
+                                                                  email: widget
+                                                                      .email,
+                                                                  id: widget
+                                                                      .id)));
+                                                },
+                                                minWidth: 140,
+                                                child: const Text(
+                                                  'Lihat Komentar',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                  ),
+                                                )),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          CircleAvatar(
+                                            maxRadius: 23,
+                                            backgroundColor: Colors.amber,
+                                            child: IconButton(
+                                                onPressed: () async {
+                                                  FirebaseFirestore firestore =
+                                                      FirebaseFirestore
+                                                          .instance;
+                                                  CollectionReference favorite =
+                                                      firestore.collection(
+                                                          "favorite");
+
+                                                  await favorite.add({
+                                                    'emailUsr': widget.email,
+                                                    'id': widget.id,
+                                                    'judul': snapshot.data!
+                                                        .docs[index]['judul'],
+                                                    'gambar': snapshot.data!
+                                                        .docs[index]['gambar'],
+                                                    'penulis': snapshot.data!
+                                                        .docs[index]['penulis'],
+                                                  });
+                                                  const snackBar = SnackBar(
+                                                    content: Text(
+                                                        'Berhasil disimpan sebagai favorite!',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                                    backgroundColor:
+                                                        Colors.amber,
+                                                  );
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(snackBar);
+                                                },
+                                                icon: const Icon(
+                                                  Icons.favorite_outline,
+                                                  color: Colors.black,
+                                                )),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  // ignore: sized_box_for_whitespace, avoid_unnecessary_containers
+                                  Container(
+                                    child: SingleChildScrollView(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                          snapshot.data!.docs[index]
+                                              ['sinopsis'],
+                                          style: const TextStyle(
+                                              fontSize: 13, height: 1.5),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    })
+                : const Center(
+                    child: Text(
+                      'Tidak Ada Komentar',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  );
+          } else {
+            return const Center(child: Text("Loading...."));
+          }
+        },
       ),
     );
   }

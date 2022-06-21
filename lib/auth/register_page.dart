@@ -137,6 +137,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       signUp(emailController.text, passwordController.text)
                           .then((result) {
                         if (result == null) {
+                          userSignUp(
+                              emailController.text, passwordController.text);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

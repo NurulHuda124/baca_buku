@@ -244,7 +244,8 @@ class _FormPageState extends State<FormPage> {
                       'penulis': penulisController.text,
                       'jenis': jenisController.text,
                       'halaman': halamanController.text,
-                      'sinopsis': sinopsisController.text
+                      'sinopsis': sinopsisController.text,
+                      'email': widget.email
                     });
                   } else {
                     books!.doc(widget.id).update({
@@ -253,12 +254,16 @@ class _FormPageState extends State<FormPage> {
                       'penulis': penulisController.text,
                       'jenis': jenisController.text,
                       'halaman': halamanController.text,
-                      'sinopsis': sinopsisController.text
+                      'sinopsis': sinopsisController.text,
+                      'email': widget.email
                     });
                   }
                   //snackbar notification
-                  const snackBar =
-                      SnackBar(content: Text('Data saved successfully!'));
+                  const snackBar = SnackBar(
+                    content: Text('Buku berhasil diunggah!',
+                        style: TextStyle(color: Colors.black)),
+                    backgroundColor: Colors.amber,
+                  );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
                   //back to main page

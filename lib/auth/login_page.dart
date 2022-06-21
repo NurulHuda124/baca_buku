@@ -205,6 +205,7 @@ class _LoginPageState extends State<LoginPage> {
         onTap: () {
           signInWithGoogle().then((result) {
             if (result != null) {
+              userSignUp(emailController.text, passwordController.text);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {

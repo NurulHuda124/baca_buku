@@ -1,52 +1,42 @@
+// ignore_for_file: file_names
+
 import 'package:baca_buku_flutter/pages/akun.dart';
-// ignore: unused_import
-import 'package:baca_buku_flutter/pages/comments.dart';
 import 'package:baca_buku_flutter/pages/detail_page.dart';
-import 'package:baca_buku_flutter/pages/favoritePage.dart';
 import 'package:baca_buku_flutter/pages/formPage.dart';
+import 'package:baca_buku_flutter/pages/home1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.email}) : super(key: key);
+class FavoritePage extends StatefulWidget {
+  const FavoritePage({Key? key, required this.email}) : super(key: key);
   final String email;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<FavoritePage> createState() => _FavoritePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore firebase = FirebaseFirestore.instance;
 
     // ignore: unused_local_variable
-    CollectionReference books = firebase.collection('books');
+    CollectionReference favorite = firebase.collection('favorite');
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: const [
-            Text(
-              'Baca',
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber),
-            ),
-            Text(
-              'Buku',
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple),
-            ),
-          ],
+        title: const Text(
+          'Favorite',
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple),
         ),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.deepPurple,
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: books.get(),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: favorite.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             // ignore: prefer_is_empty
@@ -68,7 +58,8 @@ class _HomePageState extends State<HomePage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => DetailPage(
-                                              id: snapshot.data!.docs[index].id,
+                                              id: snapshot.data!.docs[index]
+                                                  ['id'],
                                               email: widget.email,
                                               judul: snapshot.data!.docs[index]
                                                   ['judul'],
@@ -78,27 +69,12 @@ class _HomePageState extends State<HomePage> {
                                   snapshot.data!.docs[index]['gambar']),
                             ),
                           ),
-                          title: GestureDetector(
-                            onTap: () async {
-                              FirebaseFirestore firestore =
-                                  FirebaseFirestore.instance;
-                              CollectionReference favorite =
-                                  firestore.collection("favorite");
-
-                              await favorite.add({
-                                'emailUsr': widget.email,
-                                'judul': snapshot.data!.docs[index].id,
-                              });
-                              // ignore: avoid_print
-                              print("Data Tersimpan");
-                            },
-                            child: Text(
-                              snapshot.data!.docs[index]['judul'],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          title: Text(
+                            snapshot.data!.docs[index]['judul'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           subtitle: Text(snapshot.data!.docs[index]['penulis'],
@@ -108,28 +84,16 @@ class _HomePageState extends State<HomePage> {
                               )),
                           trailing: IconButton(
                             onPressed: () {
-                              if (widget.email ==
-                                  snapshot.data!.docs[index]['email']) {
-                                Navigator.push(
+                              Navigator.push(
                                   context,
-                                  //pass data to edit form
                                   MaterialPageRoute(
-                                      builder: (context) => FormPage(
-                                            id: snapshot.data!.docs[index].id,
+                                      builder: (context) => DetailPage(
+                                            id: snapshot.data!.docs[index]
+                                                ['id'],
                                             email: widget.email,
-                                          )),
-                                );
-                              } else {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DetailPage(
-                                              id: snapshot.data!.docs[index].id,
-                                              email: widget.email,
-                                              judul: snapshot.data!.docs[index]
-                                                  ['judul'],
-                                            )));
-                              }
+                                            judul: snapshot.data!.docs[index]
+                                                ['judul'],
+                                          )));
                             },
                             icon: const Icon(
                               Icons.arrow_forward_ios_rounded,
@@ -151,20 +115,6 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.deepPurple,
-      //   onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (context) => FormPage(
-      //                 email: widget.email,
-      //               )),
-      //     );
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomSheet: const SizedBox(
         height: 20,
       ),

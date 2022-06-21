@@ -19,9 +19,11 @@ class _CommentsState extends State<Comments> {
       FirebaseFirestore.instance.collection('coments');
 
   hapusData() async {
-    FirebaseFirestore.instance.collection('coments').doc(widget.id).delete();
+    coments.doc(widget.id).delete();
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        duration: Duration(seconds: 1), content: Text("Data Terhapus")));
+      content: Text("Data Terhapus"),
+      backgroundColor: Colors.deepPurple,
+    ));
     // ignore: avoid_print
     print("Data Terhapus");
     Navigator.pop(context);
@@ -91,7 +93,10 @@ class _CommentsState extends State<Comments> {
       ),
       body: StreamBuilder<QuerySnapshot>(
         //data to be retrieved in the future
-        stream: FirebaseFirestore.instance.collection('coments').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('coments')
+            .where('judul', isEqualTo: widget.id)
+            .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           //show if there is data
           if (snapshot.hasData) {
@@ -111,7 +116,7 @@ class _CommentsState extends State<Comments> {
                         elevation: 2.0,
                         child: ListTile(
                           title: Text(
-                            widget.email,
+                            snapshot.data!.docs[index]['emailUsr'],
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 15,
@@ -126,7 +131,17 @@ class _CommentsState extends State<Comments> {
                             ),
                           ),
                           // trailing: IconButton(
-                          //   onPressed: () => hapusData(),
+                          //   onPressed: () {
+                          //     coments.doc(widget.id).delete();
+                          //     ScaffoldMessenger.of(context)
+                          //         .showSnackBar(const SnackBar(
+                          //       content: Text("Data Terhapus"),
+                          //       backgroundColor: Colors.deepPurple,
+                          //     ));
+                          //     // ignore: avoid_print
+                          //     print("Data Terhapus");
+                          //     Navigator.pop(context);
+                          //   },
                           //   icon: const Icon(
                           //     Icons.delete,
                           //     size: 30,
