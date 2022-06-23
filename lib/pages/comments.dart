@@ -18,39 +18,6 @@ class _CommentsState extends State<Comments> {
   final CollectionReference coments =
       FirebaseFirestore.instance.collection('coments');
 
-  hapusData() async {
-    coments.doc(widget.id).delete();
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text("Data Terhapus"),
-      backgroundColor: Colors.deepPurple,
-    ));
-    // ignore: avoid_print
-    print("Data Terhapus");
-    Navigator.pop(context);
-  }
-
-  // void getData() async {
-  //   coments = firebase.collection('coments');
-  //   // ignore: unnecessary_null_comparison
-  //   if (widget.id != null) {
-  //     var data = await coments!.doc(widget.id).get();
-  //     // ignore: unused_local_variable
-  //     var item = data.data() as Map<String, dynamic>;
-
-  //     //set state to fill data controller from data firebase
-  //     setState(() {
-  //       komentarController = TextEditingController(text: item['komentar']);
-  //     });
-  //   }
-  // }
-
-  // @override
-  // void initState() {
-  //   // ignore: todo
-  //   getData();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -69,7 +36,6 @@ class _CommentsState extends State<Comments> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.deepPurple,
         actions: [
-          //if have data show delete button
           // ignore: unnecessary_null_comparison
           widget.id != null
               ? IconButton(
@@ -92,21 +58,16 @@ class _CommentsState extends State<Comments> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        //data to be retrieved in the future
         stream: FirebaseFirestore.instance
             .collection('coments')
             .where('judul', isEqualTo: widget.id)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          //show if there is data
           if (snapshot.hasData) {
             // ignore: prefer_is_empty
             return snapshot.data!.docs.length != 0
                 ? ListView.builder(
-                    // displayed as much as the variable data alldata
                     itemCount: snapshot.data!.docs.length,
-
-                    //make custom item with list tile.
                     itemBuilder: (context, index) {
                       return Card(
                         shape: RoundedRectangleBorder(
@@ -130,24 +91,53 @@ class _CommentsState extends State<Comments> {
                               fontSize: 14,
                             ),
                           ),
-                          // trailing: IconButton(
-                          //   onPressed: () {
-                          //     coments.doc(widget.id).delete();
-                          //     ScaffoldMessenger.of(context)
-                          //         .showSnackBar(const SnackBar(
-                          //       content: Text("Data Terhapus"),
-                          //       backgroundColor: Colors.deepPurple,
-                          //     ));
-                          //     // ignore: avoid_print
-                          //     print("Data Terhapus");
-                          //     Navigator.pop(context);
-                          //   },
-                          //   icon: const Icon(
-                          //     Icons.delete,
-                          //     size: 30,
-                          //     color: Colors.deepPurple,
-                          //   ),
-                          // ),
+                          trailing: IconButton(
+                            onPressed: () {
+                              if (widget.email ==
+                                  snapshot.data!.docs[index]['emailUsr']) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctx) {
+                                      return AlertDialog(
+                                        title: const Text('Konfirmasi'),
+                                        content: const Text(
+                                            'Apakah kamu yakin ingin menghapus ini?'),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                coments
+                                                    .doc(snapshot
+                                                        .data!.docs[index].id)
+                                                    .delete();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        const SnackBar(
+                                                  content:
+                                                      Text("Komentar Terhapus"),
+                                                  backgroundColor:
+                                                      Colors.deepPurple,
+                                                ));
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Iya')),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Tidak'))
+                                        ],
+                                      );
+                                    });
+                              } else {
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 30,
+                              color: Colors.deepPurple,
+                            ),
+                          ),
                         ),
                       );
                     })

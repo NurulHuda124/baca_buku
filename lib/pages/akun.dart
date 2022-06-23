@@ -4,7 +4,7 @@ import 'package:baca_buku_flutter/auth/login_page.dart';
 import 'package:baca_buku_flutter/models/sign_in.dart';
 import 'package:baca_buku_flutter/pages/favoritePage.dart';
 import 'package:baca_buku_flutter/pages/formPage.dart';
-import 'package:baca_buku_flutter/pages/home1.dart';
+import 'package:baca_buku_flutter/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -231,7 +231,7 @@ class AccountScreen extends StatelessWidget {
                 const Text(
                   'Favorite',
                   style: TextStyle(
-                    color: Colors.deepPurple, 
+                    color: Colors.deepPurple,
                   ),
                 )
               ],

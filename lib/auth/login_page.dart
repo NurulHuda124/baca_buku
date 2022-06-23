@@ -3,7 +3,7 @@
 import 'package:baca_buku_flutter/auth/register_page.dart';
 import 'package:baca_buku_flutter/models/sign_in.dart';
 import 'package:baca_buku_flutter/models/auth.dart';
-import 'package:baca_buku_flutter/pages/home1.dart';
+import 'package:baca_buku_flutter/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -223,37 +223,6 @@ class _LoginPageState extends State<LoginPage> {
           scale: 7.0,
         ),
       ),
-      // ElevatedButton(
-      //   onPressed: () {
-      //     signInWithGoogle().then((result) {
-      //       if (result != null) {
-      //         Navigator.of(context).push(
-      //           MaterialPageRoute(
-      //             builder: (context) {
-      //               return HomePage(
-      //                 email: emailController.text,
-      //               );
-      //             },
-      //           ),
-      //         );
-      //       }
-      //     });
-      //   },
-      //   child: const Text(
-      //     "Login With Google",
-      //     style: TextStyle(
-      //       color: Colors.white,
-      //       fontSize: 20,
-      //     ),
-      //   ),
-      //   style: ElevatedButton.styleFrom(
-      //     primary: Colors.deepPurpleAccent,
-      //     minimumSize: const Size(double.infinity, 50),
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(40),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

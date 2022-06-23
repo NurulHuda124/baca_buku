@@ -78,27 +78,12 @@ class _HomePageState extends State<HomePage> {
                                   snapshot.data!.docs[index]['gambar']),
                             ),
                           ),
-                          title: GestureDetector(
-                            onTap: () async {
-                              FirebaseFirestore firestore =
-                                  FirebaseFirestore.instance;
-                              CollectionReference favorite =
-                                  firestore.collection("favorite");
-
-                              await favorite.add({
-                                'emailUsr': widget.email,
-                                'judul': snapshot.data!.docs[index].id,
-                              });
-                              // ignore: avoid_print
-                              print("Data Tersimpan");
-                            },
-                            child: Text(
-                              snapshot.data!.docs[index]['judul'],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          title: Text(
+                            snapshot.data!.docs[index]['judul'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           subtitle: Text(snapshot.data!.docs[index]['penulis'],
@@ -112,7 +97,6 @@ class _HomePageState extends State<HomePage> {
                                   snapshot.data!.docs[index]['email']) {
                                 Navigator.push(
                                   context,
-                                  //pass data to edit form
                                   MaterialPageRoute(
                                       builder: (context) => FormPage(
                                             id: snapshot.data!.docs[index].id,
@@ -151,20 +135,6 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.deepPurple,
-      //   onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (context) => FormPage(
-      //                 email: widget.email,
-      //               )),
-      //     );
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomSheet: const SizedBox(
         height: 20,
       ),

@@ -36,8 +36,6 @@ class _addComentState extends State<addComent> {
     Navigator.pop(context);
   }
 
-  //inisialize firebase instance
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,33 +50,7 @@ class _addComentState extends State<addComent> {
           ),
           backgroundColor: Colors.white,
           foregroundColor: Colors.deepPurple,
-          // actions: [
-          //   //if have data show delete button
-          //   // ignore: unnecessary_null_comparison
-          //   widget.id != null
-          //       ? IconButton(
-          //           onPressed: () {
-          //             //method to delete data based on id
-          //             FirebaseFirestore.instance
-          //                 .collection("coments")
-          //                 .doc(widget.id)
-          //                 .delete();
-          //             Navigator.push(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (context) =>
-          //                       Comments(email: widget.email, id: widget.id)),
-          //             );
-          //           },
-          //           icon: const Icon(
-          //             Icons.delete,
-          //             size: 30,
-          //           ))
-          //       : const SizedBox()
-          // ],
         ),
-        //this form for add and edit data
-        //if have id passed from main, field will show data
         body: Form(
           key: _formKey,
           child: ListView(padding: const EdgeInsets.all(16.0), children: [
@@ -134,54 +106,6 @@ class _addComentState extends State<addComent> {
                 ),
               ),
             ),
-
-            // ElevatedButton(
-            //   style: ElevatedButton.styleFrom(
-            //     primary: Colors.deepPurple,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20),
-            //     ),
-            //   ),
-            //   child: const Padding(
-            //     padding: EdgeInsets.symmetric(vertical: 15),
-            //     child: Text(
-            //       "Unggah",
-            //       style: TextStyle(color: Colors.white),
-            //     ),
-            //   ),
-            //   onPressed: () {
-            //     if (_formKey.currentState!.validate()) {
-            //       //if id not null run add data to store data into firebase
-            //       //else update data based on id
-            //       // ignore: unnecessary_null_comparison
-            //       // if (widget.id == null) {
-            //       //   coments!.add({
-            //       //     'komentar': komentarController.text,
-            //       //     // 'email': widget.email,
-            //       //     // 'judul': widget.judul
-            //       //   });
-            //       // } else {
-            //       //   coments!.doc(widget.id).update({
-            //       //     'komentar': komentarController.text,
-            //       //     // 'email': widget.email,
-            //       //     // 'judul': widget.judul
-            //       //   });
-            //       // }
-            //       //snackbar notification
-            //       const snackBar =
-            //           SnackBar(content: Text('Data saved successfully!'));
-            //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-            //       //back to main page
-            //       //home page => '/'
-            //       Navigator.pushReplacement(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) =>
-            //                   Comments(email: widget.email, id: widget.id)));
-            //     }
-            //   },
-            // )
           ]),
         ));
   }

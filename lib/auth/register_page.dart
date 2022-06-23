@@ -1,6 +1,6 @@
 import 'package:baca_buku_flutter/auth/login_page.dart';
 import 'package:baca_buku_flutter/models/auth.dart';
-import 'package:baca_buku_flutter/pages/home1.dart';
+import 'package:baca_buku_flutter/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {

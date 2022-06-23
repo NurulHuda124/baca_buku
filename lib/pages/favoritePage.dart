@@ -3,7 +3,7 @@
 import 'package:baca_buku_flutter/pages/akun.dart';
 import 'package:baca_buku_flutter/pages/detail_page.dart';
 import 'package:baca_buku_flutter/pages/formPage.dart';
-import 'package:baca_buku_flutter/pages/home1.dart';
+import 'package:baca_buku_flutter/pages/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _FavoritePageState extends State<FavoritePage> {
         foregroundColor: Colors.deepPurple,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: favorite.snapshots(),
+        stream: favorite.where('emailUsr', isEqualTo: widget.email).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             // ignore: prefer_is_empty
@@ -84,16 +84,45 @@ class _FavoritePageState extends State<FavoritePage> {
                               )),
                           trailing: IconButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailPage(
-                                            id: snapshot.data!.docs[index]
-                                                ['id'],
-                                            email: widget.email,
-                                            judul: snapshot.data!.docs[index]
-                                                ['judul'],
-                                          )));
+                              if (widget.email ==
+                                  snapshot.data!.docs[index]['emailUsr']) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctx) {
+                                      return AlertDialog(
+                                        title: const Text('Konfirmasi'),
+                                        content: const Text(
+                                            'Apakah kamu yakin ingin menghapus ini?'),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                favorite
+                                                    .doc(snapshot
+                                                        .data!.docs[index].id)
+                                                    .delete();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        const SnackBar(
+                                                  content: Text(
+                                                      "Data Favorite Terhapus"),
+                                                  backgroundColor:
+                                                      Colors.deepPurple,
+                                                ));
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Iya')),
+                                          TextButton(
+                                              onPressed: () {
+                                                // Close the dialog
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Tidak'))
+                                        ],
+                                      );
+                                    });
+                              } else {
+                                Navigator.of(context).pop();
+                              }
                             },
                             icon: const Icon(
                               Icons.arrow_forward_ios_rounded,

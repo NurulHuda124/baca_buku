@@ -33,32 +33,18 @@ class _DetailPageState extends State<DetailPage> {
         ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.deepPurple,
-        // actions: <Widget>[
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(
-        //       Icons.favorite,
-        //       color: Colors.pink,
-        //     ),
-        //   )
-        // ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        //data to be retrieved in the future
         stream: FirebaseFirestore.instance
             .collection('books')
             .where('judul', isEqualTo: widget.judul)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          //show if there is data
           if (snapshot.hasData) {
             // ignore: prefer_is_empty
             return snapshot.data!.docs.length != 0
                 ? ListView.builder(
-                    // displayed as much as the variable data alldata
                     itemCount: snapshot.data!.docs.length,
-
-                    //make custom item with list tile.
                     itemBuilder: (context, index) {
                       return Container(
                         color: Colors.white,
