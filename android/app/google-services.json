@@ -1,115 +1,41 @@
 {
   "project_info": {
-    "project_number": "666699306130",
-    "project_id": "flutterfirebase-e1747",
-    "storage_bucket": "flutterfirebase-e1747.appspot.com"
+    "project_number": "468200037441",
+    "project_id": "bacabuku-d8efb",
+    "storage_bucket": "bacabuku-d8efb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:666699306130:android:8af28b326fc2a438a8c24b",
+        "mobilesdk_app_id": "1:468200037441:android:7601aa99ba5ac87ba53ac0",
         "android_client_info": {
           "package_name": "com.example.baca_buku_flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "666699306130-kj7jht8489jpg2941q0n1mjneg5ge3cj.apps.googleusercontent.com",
+          "client_id": "468200037441-gtf98181jutit2ht836pmep46h4g9fgn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.baca_buku_flutter",
-            "certificate_hash": "90749ed620a8f5afdeff6adfd6f1afb61fb39e75"
+            "certificate_hash": "2f4c1512fd9cd79dcbb005760943fc66fb30544d"
           }
         },
         {
-          "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
+          "client_id": "468200037441-3o9il6k069miqp89rpgqe3510dtso2ua.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAoYYAlMrVmXhQWRFBN2RnK4yTaErUUL9A"
+          "current_key": "AIzaSyAb5P12VrJ8prmlywitH-2vjyGyImv6jxw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:666699306130:android:1d61b02be8902763a8c24b",
-        "android_client_info": {
-          "package_name": "com.example.firebase"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "666699306130-56pn108rjcmpgd0celiea92td5nspkfo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.firebase",
-            "certificate_hash": "90749ed620a8f5afdeff6adfd6f1afb61fb39e75"
-          }
-        },
-        {
-          "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAoYYAlMrVmXhQWRFBN2RnK4yTaErUUL9A"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:666699306130:android:bb50fa2eac11fe5ca8c24b",
-        "android_client_info": {
-          "package_name": "com.example.review_buku"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "666699306130-d3p4vpm4amhat328bom66hnp5ojeqdoc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.review_buku",
-            "certificate_hash": "90749ed620a8f5afdeff6adfd6f1afb61fb39e75"
-          }
-        },
-        {
-          "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAoYYAlMrVmXhQWRFBN2RnK4yTaErUUL9A"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "666699306130-j54d72975aq23e57fpdmrukshsuvsvat.apps.googleusercontent.com",
+              "client_id": "468200037441-3o9il6k069miqp89rpgqe3510dtso2ua.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
