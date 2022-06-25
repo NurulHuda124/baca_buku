@@ -136,10 +136,10 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomSheet: const SizedBox(
-        height: 20,
+        height: 15,
       ),
       bottomNavigationBar: Container(
-        height: 65,
+        height: 70,
         decoration: const BoxDecoration(
             color: Colors.white30,
             borderRadius: BorderRadius.only(

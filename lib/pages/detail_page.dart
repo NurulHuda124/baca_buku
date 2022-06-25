@@ -151,14 +151,14 @@ class _DetailPageState extends State<DetailPage> {
                                             'Diunggah : ',
                                             style: TextStyle(
                                                 color: Colors.black54,
-                                                fontSize: 10,
+                                                fontSize: 7,
                                                 fontStyle: FontStyle.italic),
                                           ),
                                           Text(
                                             snapshot.data!.docs[index]['email'],
                                             style: const TextStyle(
                                                 color: Colors.black54,
-                                                fontSize: 10,
+                                                fontSize: 7,
                                                 fontStyle: FontStyle.italic),
                                           ),
                                         ],
@@ -188,12 +188,12 @@ class _DetailPageState extends State<DetailPage> {
                                                                   id: widget
                                                                       .id)));
                                                 },
-                                                minWidth: 140,
+                                                minWidth: 100,
                                                 child: const Text(
                                                   'Lihat Komentar',
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 15,
+                                                    fontSize: 10,
                                                   ),
                                                 )),
                                           ),
