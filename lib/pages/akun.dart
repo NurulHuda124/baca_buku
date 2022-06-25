@@ -57,14 +57,14 @@ class AccountScreen extends StatelessWidget {
                           const Text(
                             'Selamat Datang',
                             style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 25,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
                             email,
                             style: const TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -81,7 +81,7 @@ class AccountScreen extends StatelessWidget {
           ),
           Container(
             width: 530,
-            height: 525,
+            height: 398,
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.only(
@@ -178,7 +178,7 @@ class AccountScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.deepPurple,
       bottomNavigationBar: Container(
-        height: 65,
+        height: 70,
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
